@@ -35,44 +35,39 @@ int Hexagon::perimeter() {
 }
 
 
-template <class T>
-void merge(vector <T*>& array, int l, int mid, int r) {
-    vector <T*> auxiliary_array(r - l);
+void merge(vector <IFigure*>& array, size_t l, size_t mid, size_t r) {
+    vector <IFigure*> auxiliary_array(r - l);
     int it1 = 0;
     int it2 = 0;
     while (l + it1 < mid and mid + it2 < r) {
-        if (array[l + it1] <= array[mid + it2]) {
-            auxiliary_array.push_back(array[l + it1]);
+        if (array[l + it1]->area() <= array[mid + it2]->area()) {
+            auxiliary_array[it1 + it2] = (array[l + it1]);
             it1++;
         }
         else {
-            auxiliary_array.push_back(array[mid + it2]);
+            auxiliary_array[it1 + it2] = (array[mid + it2]);
             it2++;
         }
     }
     while (l + it1 < mid) {
-        auxiliary_array.push_back(array[l + it1]);
+        auxiliary_array[it1 + it2] = (array[l + it1]);
         it1++;
     }
     while (mid + it2 < r) {
-        auxiliary_array.push_back(array[mid + it2]);
+        auxiliary_array[it1 + it2] = (array[mid + it2]);
         it2++;
-    } 
+    }
     for (int i = 0; i < r - l; i++) {
         array[l + i] = auxiliary_array[i];
     }
 }
 
-template <class T>
-void mergeSort(vector <T*>& array, size_t l, size_t r) {
-    if (l + 1 < r) {
-        size_t mid = (l + r) / 2;
-        mergeSort(array, l, mid);
-        mergeSort(array, mid, r);
-        merge(array, l, mid, r);
+void mergeSort(vector <IFigure*>& array, size_t l, size_t r) {
+    if (l + 1 == r) {
+        return;
     }
-}
-
-void sortFigures() {
-
+    size_t mid = (l + r) / 2;
+    mergeSort(array, l, mid);
+    mergeSort(array, mid, r);
+    merge(array, l, mid, r);
 }

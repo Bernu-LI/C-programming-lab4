@@ -6,8 +6,8 @@
 using namespace std;
 
 int main() {
-    vector <EquilateralTriangle*> triangles;
-    vector <Hexagon*> hexagons;
+    vector<IFigure*> triangles;
+    vector <IFigure*> hexagons;
 
     while (true) {
         cout << "What do you want to do?\n";
@@ -126,8 +126,23 @@ int main() {
             int choice;
             cin >> choice;
 
-            if (choice == 5) {
-                mergeSort(triangles, 0, triangles.size());
+            if (choice == 1) {
+                if (!triangles.empty()) {
+                    mergeSort(triangles, 0, triangles.size());
+                    cout << "The figures were successfully sorted\n\n";
+                }
+                else {
+                    cout << "There are not objects to sort\n\n";
+                }
+            }
+            else if (choice == 2) {
+                if (!triangles.empty()) {
+                    mergeSort(hexagons, 0, hexagons.size());
+                    cout << "The figures were successfully sorted\n\n";
+                }
+                else {
+                    cout << "There are not objects to sort\n\n";
+                }
             }
         }
         else if (command == 0) {

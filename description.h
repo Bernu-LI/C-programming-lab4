@@ -33,7 +33,6 @@ private:
     int sideLength = 0;
 };
 
-template <class T>
-void merge(std::vector <T*>& array, int l, int mid, int r);
-template <class T>
-void mergeSort(std::vector <T*>& array, size_t l, size_t r);
+
+void merge(std::vector <IFigure*>& array, int l, int mid, int r);
+void mergeSort(std::vector <IFigure*>& array, size_t l, size_t r);
