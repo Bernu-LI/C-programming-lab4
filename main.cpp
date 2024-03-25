@@ -6,8 +6,8 @@
 using namespace std;
 
 int main() {
-    vector<IFigure*> triangles;
-    vector <IFigure*> hexagons;
+    vector<EquilateralTriangle*> triangles;
+    vector <Hexagon*> hexagons;
 
     while (true) {
         cout << "What do you want to do?\n";
@@ -33,17 +33,23 @@ int main() {
             cin >> choice;
 
             if (choice == 1) {
-                cout << "Enter side length: ";
-                int sideLength;
-                cin >> sideLength;
-                triangles.push_back(new EquilateralTriangle(sideLength));
+                cout << "Enter the coordinates of point1 (x, y): ";
+                double x1, y1;
+                cin >> x1 >> y1;
+                cout << "Enter the coordinates of point2 (x, y): ";
+                double x2, y2;
+                cin >> x2 >> y2;
+                triangles.push_back(new EquilateralTriangle({x1, y1}, {x2, y2}));
                 cout << "The figure has been successfully added\n\n";
             }
             else if (choice == 2) {
-                cout << "Enter side length: ";
-                int sideLength;
-                cin >> sideLength;
-                hexagons.push_back(new Hexagon(sideLength));
+                cout << "Enter the coordinates of point1 (x, y): ";
+                double x1, y1;
+                cin >> x1 >> y1;
+                cout << "Enter the coordinates of point2 (x, y): ";
+                double x2, y2;
+                cin >> x2 >> y2;
+                hexagons.push_back(new Hexagon({x1, y1}, {x2, y2}));
                 cout << "The figure has been successfully added\n\n";
             }
         }
@@ -58,13 +64,13 @@ int main() {
 
             if (choice == 1) {
                 for (auto el: triangles) {
-                    el->display();
+                    el->draw();
                 }
                 cout << "\n";
             }
             else if (choice == 2) {
                 for (auto el: hexagons) {
-                    el->display();
+                    el->draw();
                 }
                 cout << "\n";
             }
@@ -81,14 +87,14 @@ int main() {
             if (choice == 1) {
                 double counter = 0;
                 for (auto el: triangles) {
-                    counter += el->area();
+                    counter += el->square();
                 }
                 cout << "Total area: " << counter << "\n\n";
             }
             else if (choice == 2) {
                 double counter = 0;
                 for (auto el: hexagons) {
-                    counter += el->area();
+                    counter += el->square();
                 }
                 cout << "Total area: " << counter << "\n\n";
             }
@@ -154,6 +160,5 @@ int main() {
     }
     return 0;
 }
-
 
 
